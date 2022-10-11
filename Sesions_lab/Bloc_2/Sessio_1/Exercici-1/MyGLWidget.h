@@ -7,13 +7,12 @@ class MyGLWidget : public BL2GLWidget {
   public:
     MyGLWidget(QWidget *parent=0) : BL2GLWidget(parent) {}
     ~MyGLWidget();
-
-  protected:
-    void carregaShaders();
-    GLuint projLoc;
-    void projectTransform();
+    void projectTransform(); //Implllementa crida a perspective
+    void carregaShaders(); //Afegirem el enviament de la matriu de projecció al vertex shader
     void paintGL();
 
   private:
     int printOglError(const char file[], int line, const char func[]);
+    GLuint projLoc;
+    
 };

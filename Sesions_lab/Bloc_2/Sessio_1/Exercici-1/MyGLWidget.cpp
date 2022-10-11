@@ -47,19 +47,18 @@ int MyGLWidget::printOglError(const char file[], int line, const char func[])
 }
 
 void MyGLWidget::carregaShaders() {
-    BL2GLWidget::carregaShaders();
-    projLoc = glGetUniformLocation (program->programId(), "proj");
+    BL2GLWidget::carregaShaders(); //Fem el que hi ha a BL2GLWidget
+    projLoc = glGetUniformLocation (program->programId(), "proj"); //Enviem al shader el uniform de la matriu de projecció
 }
 
-void MyGLWidget::projectTransform () {
-// glm::perspective (FOV en radians, ra window, znear, zfar)
-glm::mat4 Proj = glm::perspective (float(M_PI)/2.0f, 1.0f, 0.4f, 3.0f);
-glUniformMatrix4fv (projLoc, 1, GL_FALSE, &Proj[0][0]);
+void MyGLWidget::projectTransform() {
+    glm::mat4 Proj = glm::perspective (float(M_PI)/2.0f, 1.0f, 0.4f, 3.0f); //Creem matriu projecció amb els paràmetres adients
+    glUniformMatrix4fv(projLoc,1,GL_FALSE,&Proj[0][0]); //Assignar al uniform
 }
 
-void MyGLWidget::paintGL() { //Afegim la transformació de projecció a la classe principal
-    BL2GLWidget::paintGL();
-    projectTransform();
+void MyGLWidget::paintGL() {
+    BL2GLWidget::paintGL();  //Fem el que ja hi havia a la classe principal
+    projectTransform(); //Afegim la matriu de projecció
 }
 
 MyGLWidget::~MyGLWidget() {
