@@ -210,10 +210,6 @@ void MyGLWidget::modelTransformTerra() {
 }
 
 
-void MyGLWidget::parametres_escena(glm::vec3 punt_max,glm::vec3 punt_min) {
-    centre_escena = glm::vec3((punt_max[0]+punt_min[0])/2.0,(punt_max[0]+punt_min[0])/2.0,(punt_max[0]+punt_min[0])/2.0);
-    radi = distance(punt_max,punt_min)/2;
-}
 
 
 
