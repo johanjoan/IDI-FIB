@@ -48,18 +48,19 @@ int MyGLWidget::printOglError(const char file[], int line, const char func[])
 void MyGLWidget::RickTransform() { //Col·loquem el Rick a la posició (-2.5,0,0) mirant cap a Z negativa
     LL2GLWidget::RickTransform();
     glm::mat4 TG(1.0f);  
-    TG = glm::translate(TG, glm::vec3(-2.5, 0, 0));
+    TG = glm::translate(TG, posicio_Rick);
     TG = glm::scale(TG, glm::vec3(escalaModels[RICK]));
-    TG = glm::rotate(TG,float(M_PI), glm::vec3(0,1,0));
+    TG = glm::rotate(TG,angle_Rick, glm::vec3(0,1,0));
     TG = glm::translate(TG, -centreBaseModels[RICK]);
     glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
 }
 
 void MyGLWidget::PortalTransform () { //Col·loquem el portal davant del Rick a una distancia de 3
     glm::mat4 TG(1.0f);
-    TG = glm::translate(TG, glm::vec3(-2.5,0,-3));
-    TG = glm::scale(TG, glm::vec3(1.0/4,1,1)); //4 vegades més estret en X
+    TG = glm::translate(TG, posicio_Portal);
+    TG = glm::scale(TG, glm::vec3(1.0/4,1.0,1.0/4)); //4 vegades més estret
     TG = glm::scale(TG, glm::vec3(escalaModels[PORTAL]));
+    TG = glm::rotate(TG,angle_Portal, glm::vec3(0,1,0));
     TG = glm::translate(TG, -centreBaseModels[PORTAL]);
     glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
 }
@@ -118,6 +119,33 @@ void MyGLWidget::mouseMoveEvent (QMouseEvent *event) {
     }
     update();
 }
+
+void MyGLWidget::keyPressEvent (QKeyEvent *event) {
+    LL2GLWidget::keyPressEvent(event);
+    makeCurrent();
+    switch (event->key()) {
+    case Qt::Key_Q: { 
+        angle_Rick = angle_Rick + M_PI/4.0;	
+        if (--mirada < 0) mirada = 7;
+        break;
+    }
+    case Qt::Key_E: {
+        angle_Rick = angle_Rick - M_PI/4.0;
+        if (++mirada > 7) mirada = 0;
+        break;
+    }
+    case Qt::Key_P: {
+        angle_Portal = angle_Rick;
+        posicio_Portal_nova = posicio_Rick + Mirada_Rick[mirada]*float(3.0);
+        if (posicio_Portal_nova == posicio_Portal) posicio_Portal = glm::vec3 (-100,-100,-100); //No es veurà el portal
+        else posicio_Portal = posicio_Portal_nova;
+        break;
+    }
+    default: event->ignore(); break;
+    }
+    update();
+}
+
 MyGLWidget::~MyGLWidget()
 {
 
