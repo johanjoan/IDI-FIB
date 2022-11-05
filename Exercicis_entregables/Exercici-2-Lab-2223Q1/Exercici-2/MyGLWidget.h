@@ -12,6 +12,7 @@ class MyGLWidget : public LL2GLWidget {
   protected:
     virtual void RickTransform();
     virtual void PortalTransform();
+    virtual void MortyTransform();
     virtual void iniCamera();
     virtual void projectTransform ();
     virtual void viewTransform();
@@ -27,6 +28,7 @@ class MyGLWidget : public LL2GLWidget {
     float psi = 0;
     float angle_Rick = M_PI;
     float angle_Portal = M_PI;
+    float angle_Morty = 0;
     glm::vec3 posicio_Rick = glm::vec3(-2.5,0,0);
     glm::vec3 Mirada_Rick[8] = {
         glm::vec3(0.0, 0.0, -1.0),
@@ -38,7 +40,18 @@ class MyGLWidget : public LL2GLWidget {
         glm::vec3(-1.0, 0.0, 0.0),
         glm::vec3(-1.0, 0.0, -1.0)
     };
-    int mirada = 0;
-    glm::vec3 posicio_Portal = posicio_Rick + Mirada_Rick[mirada]*float(3.0); 
+    glm::vec3 Mirada_Morty[8] = {
+        glm::vec3(0.0, 0.0, 1.0),
+        glm::vec3(-1.0, 0.0,  1.0),
+        glm::vec3(-1.0, 0.0, 0.0),
+        glm::vec3(-1.0, 0.0,  -1.0),
+        glm::vec3(0.0, 0.0, -1.0),
+        glm::vec3(1.0, 0.0, -1.0),
+        glm::vec3(1.0, 0.0, 0.0),
+        glm::vec3(1.0, 0.0, 1.0)
+    };
+    int rick_mira = 0;
+    int morty_mira = 0;
+    glm::vec3 posicio_Portal = posicio_Rick + Mirada_Rick[rick_mira]*float(3.0); 
     glm::vec3 posicio_Portal_nova = posicio_Portal;
 };

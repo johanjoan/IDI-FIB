@@ -65,6 +65,15 @@ void MyGLWidget::PortalTransform () { //Col·loquem el portal davant del Rick a 
     glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
 }
 
+void MyGLWidget::MortyTransform () {
+  glm::mat4 TG(1.0f);
+  TG = glm::translate(TG, posMorty);
+  TG = glm::scale(TG, glm::vec3(escalaModels[MORTY]));
+  TG = glm::rotate(TG,angle_Morty, glm::vec3(0.0,1.0,0.0));
+  TG = glm::translate(TG, -centreBaseModels[MORTY]);
+  TGMorty = TG;
+  glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
+}
 
 
 void MyGLWidget::iniCamera() {
@@ -121,27 +130,45 @@ void MyGLWidget::mouseMoveEvent (QMouseEvent *event) {
 }
 
 void MyGLWidget::keyPressEvent (QKeyEvent *event) {
-    LL2GLWidget::keyPressEvent(event);
+    // LL2GLWidget::keyPressEvent(event);
     makeCurrent();
     switch (event->key()) {
-    case Qt::Key_Q: { 
-        angle_Rick = angle_Rick + M_PI/4.0;	
-        if (--mirada < 0) mirada = 7;
-        break;
-    }
-    case Qt::Key_E: {
-        angle_Rick = angle_Rick - M_PI/4.0;
-        if (++mirada > 7) mirada = 0;
-        break;
-    }
-    case Qt::Key_P: {
-        angle_Portal = angle_Rick;
-        posicio_Portal_nova = posicio_Rick + Mirada_Rick[mirada]*float(3.0);
-        if (posicio_Portal_nova == posicio_Portal) posicio_Portal = glm::vec3 (-100,-100,-100); //No es veurà el portal
-        else posicio_Portal = posicio_Portal_nova;
-        break;
-    }
-    default: event->ignore(); break;
+        case Qt::Key_Q: { 
+            angle_Rick = angle_Rick + M_PI/4.0;	
+            if (--rick_mira < 0) rick_mira = 7;
+            break;
+        }
+        case Qt::Key_E: {
+            angle_Rick = angle_Rick - M_PI/4.0;
+            if (++rick_mira > 7) rick_mira = 0;
+            break;
+        }
+        case Qt::Key_P: {
+            angle_Portal = angle_Rick;
+            posicio_Portal_nova = posicio_Rick + Mirada_Rick[rick_mira]*float(3.0);
+            if (posicio_Portal_nova == posicio_Portal) posicio_Portal = glm::vec3 (-100,-100,-100); //No es veurà el portal
+            else posicio_Portal = posicio_Portal_nova;
+            break;
+        }
+        case Qt::Key_Left: {
+            angle_Morty += M_PI/4.0;
+            if (--morty_mira < 0) morty_mira = 7;
+            break;
+        }
+        case Qt::Key_Right: {
+            angle_Morty -= M_PI/4.0;
+            if (++morty_mira > 7) morty_mira = 0;
+            break;
+        }
+        case Qt::Key_Up: { 
+            posMorty = posMorty + Mirada_Morty[morty_mira]*glm::vec3(0.1);    	
+            break;
+        }
+        case Qt::Key_Down: {
+            posMorty = posMorty - Mirada_Morty[morty_mira]*glm::vec3(0.1);    	
+            break;
+        }
+        default: event->ignore(); break;
     }
     update();
 }
