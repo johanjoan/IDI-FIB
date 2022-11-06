@@ -18,6 +18,12 @@ class MyGLWidget : public LL2GLWidget {
     virtual void viewTransform();
     virtual void mouseMoveEvent (QMouseEvent *event);
     virtual void keyPressEvent (QKeyEvent *event);
+    virtual void creaBuffersModels();
+    virtual void paintGL();
+    virtual void carregaShaders();
+    virtual bool MortyPortalTest();
+    void MortyTransform2();
+    void Portal_passat();
 
   private:
 
@@ -28,18 +34,7 @@ class MyGLWidget : public LL2GLWidget {
     float psi = 0;
     float angle_Rick = M_PI;
     float angle_Portal = M_PI;
-    float angle_Morty = 0;
     glm::vec3 posicio_Rick = glm::vec3(-2.5,0,0);
-    glm::vec3 Mirada_Rick[8] = {
-        glm::vec3(0.0, 0.0, -1.0),
-        glm::vec3(1.0, 0.0,  -1.0),
-        glm::vec3(1.0, 0.0, 0.0),
-        glm::vec3(1.0, 0.0,  1.0),
-        glm::vec3(0.0, 0.0, 1.0),
-        glm::vec3(-1.0, 0.0, 1.0),
-        glm::vec3(-1.0, 0.0, 0.0),
-        glm::vec3(-1.0, 0.0, -1.0)
-    };
     glm::vec3 Mirada_Morty[8] = {
         glm::vec3(0.0, 0.0, 1.0),
         glm::vec3(-1.0, 0.0,  1.0),
@@ -50,8 +45,14 @@ class MyGLWidget : public LL2GLWidget {
         glm::vec3(1.0, 0.0, 0.0),
         glm::vec3(1.0, 0.0, 1.0)
     };
-    int rick_mira = 0;
     int morty_mira = 0;
-    glm::vec3 posicio_Portal = posicio_Rick + Mirada_Rick[rick_mira]*float(3.0); 
+    glm::vec3 posicio_Portal = glm::vec3(sin(angle_Rick),0.0,cos(angle_Rick))*glm::vec3(3) + posicio_Rick; 
     glm::vec3 posicio_Portal_nova = posicio_Portal;
+    Model nou_Morty;
+    GLuint VAO_nou_Morty;
+
+    //Per coloreja el nou Morty
+    GLuint alternatiuLoc;
+    float alternatiu = 1;
+    int actualitzar_Morty_nou = 0;
 };
