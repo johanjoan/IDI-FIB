@@ -146,8 +146,8 @@ void MyGLWidget::mouseMoveEvent (QMouseEvent *event) {
     if (event->type()== QEvent::MouseMove and event->buttons() == Qt::LeftButton) { //Movem només si està el botó esquerra premut
         float x_new = event->x();
         float y_new = event->y();
-        psi += (xClick-x_new)*factorAngleX;
-        theta += (yClick-y_new)*factorAngleY;
+        psi -= (xClick-x_new)*factorAngleX;
+        theta -= (yClick-y_new)*factorAngleY;
         xClick = x_new;
         yClick = y_new;
         viewTransform();
