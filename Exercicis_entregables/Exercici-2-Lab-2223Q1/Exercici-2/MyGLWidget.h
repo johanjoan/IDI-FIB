@@ -35,17 +35,6 @@ class MyGLWidget : public LL2GLWidget {
     float angle_Rick = M_PI;
     float angle_Portal = M_PI;
     glm::vec3 posicio_Rick = glm::vec3(-2.5,0,0);
-    glm::vec3 Mirada_Morty[8] = {
-        glm::vec3(0.0, 0.0, 1.0),
-        glm::vec3(-1.0, 0.0,  1.0),
-        glm::vec3(-1.0, 0.0, 0.0),
-        glm::vec3(-1.0, 0.0,  -1.0),
-        glm::vec3(0.0, 0.0, -1.0),
-        glm::vec3(1.0, 0.0, -1.0),
-        glm::vec3(1.0, 0.0, 0.0),
-        glm::vec3(1.0, 0.0, 1.0)
-    };
-    int morty_mira = 0;
     glm::vec3 posicio_Portal = glm::vec3(sin(angle_Rick),0.0,cos(angle_Rick))*glm::vec3(3) + posicio_Rick; 
     glm::vec3 posicio_Portal_nova = posicio_Portal;
     Model nou_Morty;
@@ -55,4 +44,5 @@ class MyGLWidget : public LL2GLWidget {
     GLuint alternatiuLoc;
     float alternatiu = 1;
     int actualitzar_Morty_nou = 0;
+    int camera = 0; //Camera desde fora si 0, cap Morty si 1
 };

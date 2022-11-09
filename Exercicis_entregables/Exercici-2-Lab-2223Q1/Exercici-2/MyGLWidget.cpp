@@ -124,12 +124,21 @@ void MyGLWidget::projectTransform() {
 }
 
 void MyGLWidget::viewTransform () {
-    glm::mat4 View (1.0f);
-    View = glm::translate(View,glm::vec3(0.0,0.0,-dist)); //Allunyem l'escena una distancia d en l'eix z (la càmera està en el 0,0,0)
-    View = glm::rotate(View,theta,glm::vec3(1.0,0.0,0.0)); //Rotem amunt i avall l'escena
-    View = glm::rotate(View,psi,glm::vec3(0.0,1.0,0.0)); //Rotem cap als costats l'escena
-    View = glm::translate(View,-vrp); //Col·loquem l'escena al centre (per a que ens caigui davant la càmera)
-    glUniformMatrix4fv (viewLoc, 1, GL_FALSE, &View[0][0]);
+    if (camera == 0) {
+        glm::mat4 View (1.0f);
+        View = glm::translate(View,glm::vec3(0.0,0.0,-dist)); //Allunyem l'escena una distancia d en l'eix z (la càmera està en el 0,0,0)
+        View = glm::rotate(View,theta,glm::vec3(1.0,0.0,0.0)); //Rotem amunt i avall l'escena
+        View = glm::rotate(View,psi,glm::vec3(0.0,1.0,0.0)); //Rotem cap als costats l'escena
+        View = glm::translate(View,-vrp); //Col·loquem l'escena al centre (per a que ens caigui davant la càmera)
+        glUniformMatrix4fv (viewLoc, 1, GL_FALSE, &View[0][0]);
+    }
+    else {
+        glm::mat4 View (1.0f);
+        View = glm::translate(View,glm::vec3(0.0,-0.8,0.0)); //Pugem la camera a alçada 0.8
+        View = glm::rotate(View,-(angleMorty+float(M_PI)),glm::vec3(0.0,1.0,0.0)); //Rotem cap als costats l'escena
+        View = glm::translate(View,-posMorty); //Col·loquem el Morty al centre
+        glUniformMatrix4fv (viewLoc, 1, GL_FALSE, &View[0][0]);
+    }
 }
 
 void MyGLWidget::mouseMoveEvent (QMouseEvent *event) {
@@ -221,22 +230,53 @@ void MyGLWidget::keyPressEvent (QKeyEvent *event) {
         }
         case Qt::Key_Left: {
             angleMorty += M_PI/4.0;
-            if (--morty_mira < 0) morty_mira = 7;
+            if (camera) viewTransform();
             break;
         }
         case Qt::Key_Right: {
             angleMorty -= M_PI/4.0;
-            if (++morty_mira > 7) morty_mira = 0;
+            if (camera) viewTransform();
             break;
         }
         case Qt::Key_Up: { 
             posMorty = glm::vec3(sin(angleMorty),0.0,cos(angleMorty))*glm::vec3(0.1) + posMorty;
             if (MortyPortalTest()) Portal_passat();
+            if (camera) viewTransform();
             break;
         }
         case Qt::Key_Down: {
             posMorty = posMorty - glm::vec3(sin(angleMorty),0.0,cos(angleMorty))*glm::vec3(0.1);  
             if (MortyPortalTest()) Portal_passat();	
+            if (camera) viewTransform();
+            break;
+        }
+        case Qt::Key_C: {
+            if (!camera) {
+                znear = 0.25;
+                camera = 1;
+                viewTransform();
+                projectTransform();
+                break;
+            }
+            znear = dist - radiEscena;
+            camera = 0;
+            viewTransform();
+            projectTransform();
+            break;
+        }
+        case Qt::Key_R: {
+            camera = 0;
+            psi = 0;
+            theta = M_PI/4.0; 
+            angle_Rick = M_PI;
+            angle_Portal = M_PI;
+            posicio_Portal = glm::vec3(sin(angle_Rick),0.0,cos(angle_Rick))*glm::vec3(3) + posicio_Rick; 
+            posMorty = glm::vec3(1,0,0);
+            angleMorty = 0;
+            TGMorty2 = glm::mat4(0.0f);
+            iniCamera();
+            viewTransform();
+            projectTransform();
             break;
         }
         default: event->ignore(); break;
