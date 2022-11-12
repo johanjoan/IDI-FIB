@@ -245,7 +245,7 @@ void MyGLWidget::projectTransform() {
         Proj = glm::perspective (FOV, ra, znear, zfar); //Creem matriu projecció amb els paràmetres adients
     }
     else {
-        Proj = glm::ortho(-radi,radi,-radi,radi,znear,zfar);
+        Proj = glm::ortho(-radi_ample,radi_ample,-radi_alt,radi_alt,znear,zfar);
     }
 
     glUniformMatrix4fv(projLoc,1,GL_FALSE,&Proj[0][0]); //Assignar al uniform
