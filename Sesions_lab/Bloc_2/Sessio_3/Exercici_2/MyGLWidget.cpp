@@ -115,6 +115,7 @@ void MyGLWidget::creaBuffers() {
     glBindVertexArray (0);
 }
 
+
 void MyGLWidget::paintGL() {
     
 
@@ -147,17 +148,7 @@ void MyGLWidget::initializeGL() {
     ini_camera();
 }
 
-void MyGLWidget::projectTransform() {
-    glm::mat4 Proj;
-    if (opt == 1) {
-        Proj = glm::perspective (FOV, ra, znear, zfar); //Creem matriu projecció amb els paràmetres adients
-    }
-    else {
-        Proj = glm::ortho(-radi,radi,-radi,radi,znear,zfar);
-    }
 
-    glUniformMatrix4fv(projLoc,1,GL_FALSE,&Proj[0][0]); //Assignar al uniform
-}
 
 void MyGLWidget::viewTransform() {
     glm::mat4 View (1.0f);
@@ -172,9 +163,7 @@ void MyGLWidget::ini_camera() {
     MyGLWidget::calcula_escena();
     ra = 1.0f;
     dist = 2*radi;
-    obs = centre_escena + dist*glm::vec3(0,0,1); //Coloquem el observador a una distancia de 2*radi en l'eix Z
     vrp = centre_escena; //Mirem al centre de l'escena
-    up = glm::vec3(0,1,0);
     FOVini = 2.0 * asin(radi / dist);
     FOV = FOVini;
     znear = dist - radi;
@@ -229,16 +218,37 @@ void MyGLWidget::modelTransformTerra() {
 void MyGLWidget::parametres_escena(glm::vec3 punt_max,glm::vec3 punt_min) {
     centre_escena = glm::vec3((punt_max[0]+punt_min[0])/2.0,(punt_max[1]+punt_min[1])/2.0,(punt_max[2]+punt_min[2])/2.0);
     radi = distance(punt_max,punt_min)/2;
+    radi_ample = radi;
+    radi_alt = radi;
 }
 
 
 void MyGLWidget::resizeGL(int w, int h){
     float rav = float(w)/float(h);
-    ra = rav;//Cas en el que rav > 1
-    if (rav < 1) { //Cas en el que rav < 1
-        FOV = 2*atan(tan(FOVini/2.0)/rav);
+    if (opt) {
+        ra = rav;//Cas en el que rav > 1
+        if (rav < 1) { //Cas en el que rav < 1
+            FOV = 2*atan(tan(FOVini/2.0)/rav);
+        }
+    }
+    else {
+        if (rav > 1) radi_ample = radi*rav;
+        else radi_alt = radi/rav;
     }
     projectTransform (); //Tornem a canviar la projecció per aplicar el nou FOV i ra del window.
+}
+
+
+void MyGLWidget::projectTransform() {
+    glm::mat4 Proj;
+    if (opt == 1) {
+        Proj = glm::perspective (FOV, ra, znear, zfar); //Creem matriu projecció amb els paràmetres adients
+    }
+    else {
+        Proj = glm::ortho(-radi_ample,radi_ample,-radi_alt,radi_alt,znear,zfar);
+    }
+
+    glUniformMatrix4fv(projLoc,1,GL_FALSE,&Proj[0][0]); //Assignar al uniform
 }
 
 void MyGLWidget::calcula_escena() { //Calcula els punts maxims i minims de l'escena i la base del patricio
@@ -289,7 +299,6 @@ void MyGLWidget::mousePressEvent(QMouseEvent *event) {
         y_old = event->y();
     }
 }
-
 
 MyGLWidget::~MyGLWidget() {
 }
