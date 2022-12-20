@@ -168,7 +168,7 @@ void MyGLWidget::restart() {
   llanterna_encesa = true;
   llum_escena = true;
   morti_mira = false;
-  xFantasma = 0.5;
+  xFantasma = 1;
   color_llanterna = glm::vec3(0.9,0.9,0.0);
   color_escena = glm::vec3(0.7,0,0.7);
   angle_morty = 90.0;
