@@ -78,10 +78,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
 
     if (not morti_mira) {
       xFantasma += 0.5;
-      if (xFantasma >= 4.5) {
-        restart();
-        std::cout << "s'ha fet el restart" << std::endl;
-      }
+      if (xFantasma >= 4.5) restart();
     }
     break;
 	}
@@ -93,10 +90,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
 
     if (not morti_mira) {
       xFantasma += 0.5;
-      if (xFantasma >= 4.5) {
-        restart();
-        std::cout << "S'ha fet el restart" << std::endl;
-      }
+      if (xFantasma >= 4.5) restart();
     }
     break;
 	}

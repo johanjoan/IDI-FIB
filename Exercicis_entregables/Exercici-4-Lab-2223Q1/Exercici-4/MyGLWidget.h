@@ -23,6 +23,6 @@ class MyGLWidget : public LL4GLWidget {
     bool llanterna_encesa = true;
     bool llum_escena = true;
     bool morti_mira = false;
-    float xFantasma = 0.5;
+    float xFantasma = 1;
 };
 
