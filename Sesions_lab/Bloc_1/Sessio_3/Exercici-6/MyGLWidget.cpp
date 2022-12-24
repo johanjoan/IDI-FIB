@@ -52,7 +52,7 @@ void MyGLWidget::paintGL ()
   // Desactivem el VAO
   glBindVertexArray(0);
 
-  Rot = -Rot;
+  Rot = -Rot; //Per a que la següent TG faci que es roti en sentit contrari
   modelTransform();
   //Pintem en un nou viewport començant per ample/2, alt/2
   glViewport (ample/2, alt/2, ample/2, alt/2); //Canviem mida del viewport
@@ -72,7 +72,7 @@ void MyGLWidget::paintGL ()
   // Desactivem el VAO
   glBindVertexArray(0);
 
-  Rot = -Rot;
+  Rot = -Rot;  //Recuperem la rotació inicial
 
 }
 
