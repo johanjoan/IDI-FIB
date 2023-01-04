@@ -121,7 +121,7 @@ void MyGLWidget::creaBuffers() {
     };
 
 
-    // Creació del Vertex Array Object per pintar
+    // Creació del Vertex Array Object per pintars
     glGenVertexArrays(1, &VAOTerra);
     glBindVertexArray(VAOTerra);
 
