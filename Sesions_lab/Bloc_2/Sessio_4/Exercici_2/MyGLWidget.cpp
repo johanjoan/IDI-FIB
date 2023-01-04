@@ -373,7 +373,7 @@ void MyGLWidget::calcula_escena() { //Calcula els punts maxims i minims de l'esc
     minx = maxx = m1.vertices()[0];
     miny = maxy = m1.vertices()[1];
     minz = maxz = m1.vertices()[2];
-    for (unsigned int i = 3; i < m.vertices().size(); i+=3) {
+    for (unsigned int i = 3; i < m1.vertices().size(); i+=3) {
         if (m1.vertices()[i] < minx) minx = m1.vertices()[i];
         if (m1.vertices()[i] > maxx) maxx = m1.vertices()[i];
         if (m1.vertices()[i+1] < miny) miny = m1.vertices()[i+1];
