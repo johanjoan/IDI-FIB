@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MyForm</class>
+ <widget class="QWidget" name="MyForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>973</width>
+    <height>666</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IDI-Lab</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="12,1">
+   <item>
+    <widget class="MyGLWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_10">
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>13</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Color Terra</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="MyLabel" name="label_4">
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <widget class="QSpinBox" name="spinBox_2">
+                 <property name="maximum">
+                  <number>255</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>R</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <widget class="QSpinBox" name="spinBox_3">
+                 <property name="maximum">
+                  <number>255</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>G</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QSpinBox" name="spinBox_4">
+                 <property name="maximum">
+                  <number>255</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>B</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Angle Ψ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDial" name="dial">
+               <property name="maximum">
+                <number>359</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Angle Θ</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDial" name="dial_2">
+               <property name="maximum">
+                <number>359</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QRadioButton" name="radioButton">
+             <property name="text">
+              <string>Patricio/Legoman</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox">
+             <property name="maximumSize">
+              <size>
+               <width>84</width>
+               <height>26</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>180</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="maximumSize">
+              <size>
+               <width>84</width>
+               <height>17</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>FOV</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="horizontalSlider">
+             <property name="maximumSize">
+              <size>
+               <width>84</width>
+               <height>163</height>
+              </size>
+             </property>
+             <property name="maximum">
+              <number>180</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&amp;Sortir</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyGLWidget</class>
+   <extends>QWidget</extends>
+   <header>MyGLWidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>envia_FOV(int)</signal>
+    <signal>envia_phi(int)</signal>
+    <signal>envia_theta(int)</signal>
+    <slot>set_FOV(int)</slot>
+    <slot>set_model(bool)</slot>
+    <slot>set_theta(int)</slot>
+    <slot>set_phi(int)</slot>
+    <slot>set_color_terra(int,int,int)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyLabel</class>
+   <extends>QLabel</extends>
+   <header>MyLabel.h</header>
+   <slots>
+    <signal>envia_background(int,int,int)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MyForm</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>861</x>
+     <y>653</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>839</x>
+     <y>529</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>834</x>
+     <y>578</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>865</x>
+     <y>622</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>865</x>
+     <y>622</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>834</x>
+     <y>578</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>envia_FOV(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>428</x>
+     <y>274</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>834</x>
+     <y>578</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>widget</receiver>
+   <slot>set_FOV(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>834</x>
+     <y>578</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>750</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>widget</receiver>
+   <slot>set_model(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>927</x>
+     <y>546</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>752</x>
+     <y>175</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>envia_phi(int)</signal>
+   <receiver>dial</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>530</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>827</x>
+     <y>456</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>widget</sender>
+   <signal>envia_theta(int)</signal>
+   <receiver>dial_2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>656</x>
+     <y>29</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>908</x>
+     <y>451</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>widget</receiver>
+   <slot>set_phi(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>457</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>746</x>
+     <y>112</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dial_2</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>widget</receiver>
+   <slot>set_theta(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>888</x>
+     <y>445</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>733</x>
+     <y>59</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_4</receiver>
+   <slot>set_r(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>797</x>
+     <y>334</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>804</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_4</receiver>
+   <slot>set_g(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>860</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>820</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_4</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_4</receiver>
+   <slot>set_b(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>922</x>
+     <y>347</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>847</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>label_4</sender>
+   <signal>envia_background(int,int,int)</signal>
+   <receiver>widget</receiver>
+   <slot>set_color_terra(int,int,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>877</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>761</x>
+     <y>214</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
