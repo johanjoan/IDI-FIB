@@ -61,7 +61,7 @@ void main()
   vec3 normalSCO = NormalMatrix*normal; //Normals en SCO
   normalSCO = normalize(normalSCO); //Tornem a normalitzar
 
-  vec4 posFocusSCO = view*vec4(posFocus,1.0); //Posició del focus en SCO
+  vec4 posFocusSCO = view*vec4(posFocus,1.0); //Posició del focus en SCO (no TG ja que ja l'hem posat en SCA)
 
   vec4 vertexSCO = view*TG*vec4(vertex,1.0);
   vec3 L = posFocusSCO.xyz - vertexSCO.xyz;
