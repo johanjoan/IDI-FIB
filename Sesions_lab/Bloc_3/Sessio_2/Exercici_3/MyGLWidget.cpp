@@ -78,8 +78,14 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
         glUniform3fv (pos_focus_Loc, 1, &pos_focus[0]);
         break;
     case Qt::Key_F :
-        if (tipus_focus == 1) tipus_focus = 0;
-        else tipus_focus = 1;
+        if (tipus_focus == 1) {
+            tipus_focus = 0;
+            pos_focus = glm::vec3(0.0,0.0,0.0);
+        }
+        else {
+            tipus_focus = 1;
+            pos_focus = glm::vec3(1.0,1.0,1.0);
+        }
         glUniform1iv (focus_Loc, 1, &tipus_focus);
         break;
     default: BL3GLWidget::keyPressEvent(event); break;
@@ -89,7 +95,7 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
 
 void MyGLWidget::iniMaterialTerra () {
     amb = glm::vec3(0.0,0,0.2);
-    diff = glm::vec3(0.0,0,0.9);
+    diff = glm::vec3(0.0,0,0.8);
     spec = glm::vec3(1,1,1);
     shin = 100;
 }

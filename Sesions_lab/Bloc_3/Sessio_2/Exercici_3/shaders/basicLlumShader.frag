@@ -10,12 +10,13 @@ out vec4 FragColor;
 in vec3 normalSCO;
 in vec3 L;
 in vec4 vertexSCO;
+uniform int focus;
 
 // Valors per als components que necessitem del focus de llum
 uniform vec3 colorFocus;
-
+uniform vec3 posFocus;  // en SCO
 vec3 llumAmbient = vec3(0.2, 0.2, 0.2);
-
+uniform mat4 view;
 
 vec3 Ambient() {
     return llumAmbient * frag_matamb;
@@ -56,6 +57,14 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
 
 void main()
 {	
+
+  vec3 L;
+
+  vec4 posFocusSCO;
+  if (focus == 1) posFocusSCO = view*vec4(posFocus,1.0); 
+  else posFocusSCO = vec4(posFocus,1.0);
+
+  L = normalize((posFocusSCO - vertexSCO).xyz);
 
 	FragColor = vec4(Ambient() + Difus(normalSCO,L,colorFocus) + Especular(normalSCO,L,vertexSCO,colorFocus),1);	
 }

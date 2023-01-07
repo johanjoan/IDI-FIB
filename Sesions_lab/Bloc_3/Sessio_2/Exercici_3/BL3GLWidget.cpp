@@ -273,7 +273,7 @@ void BL3GLWidget::creaBuffersTerraIParet ()
   };
 
   iniMaterialTerra();
-
+  
   // Fem que el material del terra afecti a tots els vèrtexs per igual
   glm::vec3 matambterra[12] = {
 	amb, amb, amb, amb, amb, amb, amb, amb, amb, amb, amb, amb
