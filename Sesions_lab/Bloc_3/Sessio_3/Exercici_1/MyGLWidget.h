@@ -15,7 +15,8 @@ class MyGLWidget : public BL3GLWidget {
     virtual void initializeGL();
   private:
     int printOglError(const char file[], int line, const char func[]);
-    GLuint pos_focus_Loc,col_focus_Loc;
+    GLuint pos_focus_Loc,col_focus_Loc,pos_cam_Loc;
     float x_focus = 1.0;
-    glm::vec3 pos_focus = glm::vec3(1.0,1.0,1.0); 
+    glm::vec3 pos_focus_escena = glm::vec3(1.0,1.0,1.0);  //Focus Escena
+    glm::vec3 pos_focus_camera = glm::vec3(0.0,0.0,0.0); //Focus Càmera
 };

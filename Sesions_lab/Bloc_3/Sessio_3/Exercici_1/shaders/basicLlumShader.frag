@@ -8,15 +8,15 @@ in float frag_matshin;
 out vec4 FragColor;
 
 in vec3 normalSCO;
-in vec3 L_camera;
-in vec3 L_escena;
 in vec4 vertexSCO;
 
 // Valors per als components que necessitem del focus de llum
 uniform vec3 colorFocus;
-
+uniform vec3 posFocus_escena;
+uniform vec3 posFocus_camera;
 vec3 llumAmbient = vec3(0.2, 0.2, 0.2);
 
+uniform mat4 view;
 
 vec3 Ambient() {
     return llumAmbient * frag_matamb;
@@ -57,6 +57,15 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
 
 void main()
 {	
+  //Focus Escena
+  vec4 posFocus_escenaSCO = view*vec4(posFocus_escena,1.0); 
+  vec3 L_escena = posFocus_escenaSCO.xyz - vertexSCO.xyz;
+  L_escena = normalize(L_escena); //Tornem a normalitzar
 
-	FragColor = vec4(Ambient() + Difus(normalSCO,L_escena,colorFocus) + Difus(normalSCO,L_camera,colorFocus) + Especular(normalSCO,L_escena,vertexSCO,colorFocus) + Especular(normalSCO,L_camera,vertexSCO,colorFocus),1);	
+  //Focus Càmera
+  vec4 posFocus_cameraSCO = vec4(posFocus_camera,1.0); 
+  vec3 L_camera = posFocus_cameraSCO.xyz - vertexSCO.xyz;
+  L_camera = normalize(L_camera); //Tornem a normalitzar
+
+	FragColor = vec4(Ambient() + Difus(normalSCO,L_camera,colorFocus)  + Especular(normalSCO,L_camera,vertexSCO,colorFocus) + Difus(normalSCO,L_escena,colorFocus)  + Especular(normalSCO,L_escena,vertexSCO,colorFocus),1);	
 }

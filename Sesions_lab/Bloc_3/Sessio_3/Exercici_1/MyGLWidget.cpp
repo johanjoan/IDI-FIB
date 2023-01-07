@@ -70,12 +70,12 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
     makeCurrent();
     switch (event->key()) {
     case Qt::Key_K : 
-        pos_focus.x -= 0.1;
-        glUniform3fv (pos_focus_Loc, 1, &pos_focus[0]);
+        pos_focus_escena.x -= 0.1;
+        glUniform3fv (pos_focus_Loc, 1, &pos_focus_escena[0]);
         break;
     case Qt::Key_L :
-        pos_focus.x += 0.1;
-        glUniform3fv (pos_focus_Loc, 1, &pos_focus[0]);
+        pos_focus_escena.x += 0.1;
+        glUniform3fv (pos_focus_Loc, 1, &pos_focus_escena[0]);
         break;
     default: BL3GLWidget::keyPressEvent(event); break;
     }
@@ -92,9 +92,11 @@ void MyGLWidget::iniMaterialTerra () {
 
 void MyGLWidget::initializeGL() {
     BL3GLWidget::initializeGL();
-    pos_focus_Loc = glGetUniformLocation (program->programId(), "posFocus");    
+    pos_focus_Loc = glGetUniformLocation (program->programId(), "posFocus_escena");    
     col_focus_Loc = glGetUniformLocation (program->programId(), "colorFocus");    
+    pos_cam_Loc = glGetUniformLocation (program->programId(), "posFocus_camera");
     glm::vec3 col_focus = glm::vec3(0.8,0.8,0.8);
-    glUniform3fv (pos_focus_Loc, 1, &pos_focus[0]);
+    glUniform3fv (pos_cam_Loc, 1, &pos_focus_camera[0]);
+    glUniform3fv (pos_focus_Loc, 1, &pos_focus_escena[0]);
     glUniform3fv (col_focus_Loc, 1, &col_focus[0]);
 }

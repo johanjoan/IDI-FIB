@@ -22,7 +22,6 @@ uniform mat4 proj;
 uniform mat4 view;
 uniform mat4 TG;
 
-uniform vec3 posFocus;
 
 void main()
 {	
@@ -32,15 +31,7 @@ void main()
   
   vertexSCO = view*TG*vec4(vertex,1.0);
 
-  //Focus Escena
-  vec4 posFocus_escenaSCO = view*vec4(posFocus,1.0); 
-  L_escena = posFocus_escenaSCO.xyz - vertexSCO.xyz;
-  L_escena = normalize(L_escena); //Tornem a normalitzar
- 
-  //Focus de Càmera
-  vec4 posFocus_cameraSCO = vec4(posFocus,1.0);
-  L_camera = posFocus_cameraSCO.xyz - vertexSCO.xyz;
-  L_camera = normalize(L_camera); //Tornem a normalitzar
+
 
   frag_matspec = matspec;
   frag_matamb = matamb;
