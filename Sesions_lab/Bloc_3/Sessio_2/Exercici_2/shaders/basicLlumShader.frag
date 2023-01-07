@@ -8,12 +8,11 @@ in float frag_matshin;
 out vec4 FragColor;
 
 in vec3 normalSCO;
-in vec3 L;
 in vec4 vertexSCO;
 
 // Valors per als components que necessitem del focus de llum
 uniform vec3 colorFocus;
-
+uniform vec3 posFocus;  // en SCO
 vec3 llumAmbient = vec3(0.2, 0.2, 0.2);
 
 
@@ -56,6 +55,10 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
 
 void main()
 {	
+  vec4 posFocusSCO = vec4(posFocus,1.0); //Ara ho deixem ja en SCO
 
-	FragColor = vec4(Ambient() + Difus(normalSCO,L,colorFocus) + Especular(normalSCO,L,vertexSCO,colorFocus),1);	
+  vec3 L = posFocusSCO.xyz - vertexSCO.xyz;
+  L = normalize(L); //Tornem a normalitzar
+	
+  FragColor = vec4(Ambient() + Difus(normalSCO,L,colorFocus) + Especular(normalSCO,L,vertexSCO,colorFocus),1);	
 }
